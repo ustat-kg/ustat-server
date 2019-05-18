@@ -36,7 +36,7 @@ public class StudentController {
         return this.studentService.saveStudent(student);
     }
 
-    @PutMapping(path = "/updateStudent", // updates data of one student
+    @PostMapping(path = "/updateStudent", // updates data of one student
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public Student udpateStudent(@RequestBody Student student) {
         return this.studentService.updateStudent(student);

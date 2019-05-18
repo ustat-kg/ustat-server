@@ -16,10 +16,9 @@ public class MainBootstrap implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         Student student = new Student.Builder("Aselia Azimkanoava" ,
-                "aselia" , "123", "+123")
+                "aselia" , "123", "+123","aselia.azimkanova@gmail.com")
                 .withAge(16)
                 .withLevelOfSubject(Level.Advanced)
-                .withEmail("aselia.azimkanova@gmail.com")
                 .build();
         studentRepository.save(student);
     }

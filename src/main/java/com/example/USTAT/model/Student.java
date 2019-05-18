@@ -26,7 +26,7 @@ public class Student {
     private String login;
 
     @Column(name = "password", nullable = false, length = 50)
-    @JsonIgnore
+    //@JsonIgnore
     private String password;
 
     @Column(name = "is_active", nullable = false)
@@ -39,6 +39,7 @@ public class Student {
     private String avatar;
 
     @Column(name = "level_of_subject", nullable = false)
+    @Enumerated(EnumType.STRING)
     private Level levelOfSubject;
 
     @Column(name = "phone_number", nullable = false, length = 15)
@@ -62,11 +63,12 @@ public class Student {
         private String email;
 
         public Builder(String fio, String login, String password,
-                       String phoneNumber) {
+                       String phoneNumber , String email) {
             this.fio = fio;
             this.login = login;
             this.password = password;
             this.phoneNumber = phoneNumber;
+            this.email = email;
         }
 
         public Builder withAge(Integer age) {
@@ -81,11 +83,6 @@ public class Student {
 
         public Builder withLevelOfSubject(Level levelOfSubject) {
             this.levelOfSubject = levelOfSubject;
-            return this;
-        }
-
-        public Builder withEmail(String email) {
-            this.email = email;
             return this;
         }
 
