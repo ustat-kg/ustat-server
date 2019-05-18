@@ -1,5 +1,6 @@
 package com.example.USTAT.model;
 
+import com.example.USTAT.enums.Gender;
 import com.example.USTAT.enums.Level;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
@@ -35,6 +36,10 @@ public class Student {
     @Column(name = "age", nullable = false)
     private Integer age;
 
+    @Column(name = "gender")
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+
     @Column(name = "avatar")
     private String avatar;
 
@@ -57,6 +62,7 @@ public class Student {
         private String password;
         private int isActive;
         private Integer age;
+        private Gender gender;
         private String avatar;
         private Level levelOfSubject;
         private String phoneNumber;
@@ -76,6 +82,11 @@ public class Student {
             return this;
         }
 
+        public Builder withGender(Gender gender){
+            this.gender = gender;
+            return this;
+        }
+
         public Builder withAvatar(String avatar) {
             this.avatar = avatar;
             return this;
@@ -92,6 +103,7 @@ public class Student {
             student.login = login;
             student.password = password;
             student.age = age;
+            student.gender = gender;
             student.avatar = avatar;
             student.levelOfSubject = levelOfSubject;
             student.phoneNumber = phoneNumber;

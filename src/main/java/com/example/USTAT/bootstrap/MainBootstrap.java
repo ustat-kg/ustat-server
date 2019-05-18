@@ -1,5 +1,6 @@
 package com.example.USTAT.bootstrap;
 
+import com.example.USTAT.enums.Gender;
 import com.example.USTAT.enums.Level;
 import com.example.USTAT.model.Student;
 import com.example.USTAT.repository.StudentRepository;
@@ -18,6 +19,7 @@ public class MainBootstrap implements CommandLineRunner {
         Student student = new Student.Builder("Aselia Azimkanoava" ,
                 "aselia" , "123", "+123","aselia.azimkanova@gmail.com")
                 .withAge(16)
+                .withGender(Gender.Female)
                 .withLevelOfSubject(Level.Advanced)
                 .build();
         studentRepository.save(student);
