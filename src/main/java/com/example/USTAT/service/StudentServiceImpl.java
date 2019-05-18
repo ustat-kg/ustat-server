@@ -29,7 +29,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student updateStudentById(Student student) {
+    public Student updateStudent(Student student) {
         return this.studentRepository.save(student);
     }
 
