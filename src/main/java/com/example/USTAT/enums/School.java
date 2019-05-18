@@ -5,6 +5,7 @@ public enum School {
     Algebra,
     Math,
     RussianLanguage,
+    KyrgyzLanguage,
     Biology,
     Geographic,
     PreschoolEducation,
