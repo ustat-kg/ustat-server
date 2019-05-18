@@ -20,44 +20,39 @@ public class StudentController {
 
     @GetMapping(path = "/getStudent/{id}", //returns one student by id
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public Student getStudentById(@PathVariable Long id){
+    public Student getStudentById(@PathVariable Long id) {
         return this.studentService.getStudentById(id);
     }
 
     @GetMapping(path = "/getAllStudents", //returns all students
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public List<Student> getAllStudent(){
+    public List<Student> getAllStudent() {
         return this.studentService.getAllStudents();
     }
 
     @PostMapping(path = "/saveStudent", //saves one student in DataBase
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public Student saveStudent(@RequestBody Student student){
+    public Student saveStudent(@RequestBody Student student) {
         return this.studentService.saveStudent(student);
     }
 
     @PutMapping(path = "/updateStudent", // updates data of one student
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public Student udpateStudent(@RequestBody Student student){
+    public Student udpateStudent(@RequestBody Student student) {
         return this.studentService.updateStudent(student);
     }
 
     @DeleteMapping(path = "/deleteStudent/{id}", //deletes one student by id
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public void deleteStudentById(@PathVariable Long id){
+    public void deleteStudentById(@PathVariable Long id) {
         this.studentService.deleteStudentById(id);
     }
 
     @DeleteMapping(path = "/deleteAllStudents", //deletes all students
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public void deleteAllStudents(){
+    public void deleteAllStudents() {
         this.studentService.deleteAllStudents();
     }
-
-
-
-
-
 
 }
 
