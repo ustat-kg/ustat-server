@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ustat_user")
-public class User {
+@Table(name = "ustat_student")
+public class Student {
 
 }
