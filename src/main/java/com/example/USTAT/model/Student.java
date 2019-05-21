@@ -2,7 +2,6 @@ package com.example.USTAT.model;
 
 import com.example.USTAT.enums.Gender;
 import com.example.USTAT.enums.Level;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
