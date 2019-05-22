@@ -9,14 +9,19 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 
+
 @Entity
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Data
 @Table(name = "ustat_student")
 public class Student {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     @OneToOne
-    @Column(name = "user_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @Column(name = "fio", nullable = false, length = 100)
@@ -37,7 +42,7 @@ public class Student {
     @Enumerated(EnumType.STRING)
     private Level levelOfSubject;
 
-    @Column(name = "phone_number", nullable = false, length = 15)
+    @Column(name = "phone_number", nullable = false, length = 15,unique = true)
     private String phoneNumber;
 
     @Email
@@ -46,6 +51,7 @@ public class Student {
 
 
     public static class Builder {
+        private Long id;
         private User user;
         private String fio;
         private Integer age;
@@ -55,8 +61,9 @@ public class Student {
         private String phoneNumber;
         private String email;
 
-        public Builder(String fio, Integer age, Gender gender,
+        public Builder(User user,String fio, Integer age, Gender gender,
                        String phoneNumber , String email) {
+            this.user = user;
             this.fio = fio;
             this.age = age;
             this.gender = gender;

@@ -1,8 +1,15 @@
 package com.example.USTAT.model;
 
+import jdk.jfr.DataAmount;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 
+@Data
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "ustat_user")
 public class User {
