@@ -15,22 +15,13 @@ import javax.validation.constraints.Email;
 @Table(name = "ustat_student")
 public class Student {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @OneToOne
+    @Column(name = "user_id")
+    private User user;
 
     @Column(name = "fio", nullable = false, length = 100)
     private String fio;
 
-    @Column(name = "login", nullable = false, unique = true, length = 50)
-    private String login;
-
-    @Column(name = "password", nullable = false, length = 50)
-    //@JsonIgnore
-    private String password;
-
-    @Column(name = "is_active", nullable = false)
-    private int isActive;
 
     @Column(name = "age", nullable = false)
     private Integer age;
@@ -55,11 +46,8 @@ public class Student {
 
 
     public static class Builder {
-        private Long id;
+        private User user;
         private String fio;
-        private String login;
-        private String password;
-        private int isActive;
         private Integer age;
         private Gender gender;
         private String avatar;
@@ -67,24 +55,15 @@ public class Student {
         private String phoneNumber;
         private String email;
 
-        public Builder(String fio, String login, String password,
+        public Builder(String fio, Integer age, Gender gender,
                        String phoneNumber , String email) {
             this.fio = fio;
-            this.login = login;
-            this.password = password;
+            this.age = age;
+            this.gender = gender;
             this.phoneNumber = phoneNumber;
             this.email = email;
         }
 
-        public Builder withAge(Integer age) {
-            this.age = age;
-            return this;
-        }
-
-        public Builder withGender(Gender gender){
-            this.gender = gender;
-            return this;
-        }
 
         public Builder withAvatar(String avatar) {
             this.avatar = avatar;
@@ -99,8 +78,6 @@ public class Student {
         public Student build() {
             Student student = new Student();
             student.fio = fio;
-            student.login = login;
-            student.password = password;
             student.age = age;
             student.gender = gender;
             student.avatar = avatar;
