@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Data
@@ -28,21 +29,30 @@ public class User {
     @Column(name = "is_active", nullable = false)
     private int isActive;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
+
     public static class Builder{
         private Long id;
         private String login;
         private String password;
         private int isActive;
+        private Set<Role> roles;
 
-        public Builder(String login, String password){
+        public Builder(String login, String password,Set<Role> roles ){
             this.login = login;
             this.password = password;
+            this.roles = roles;
         }
 
         public User build(){
             User user = new User();
             user.login = login;
             user.password = password;
+            user.roles = roles;
             return user;
         }
     }
