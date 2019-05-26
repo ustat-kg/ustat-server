@@ -1,37 +1,42 @@
 package com.example.USTAT.model;
 
-import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Set;
 
+@Data
+@Builder
+@AllArgsConstructor
 @Entity
 @Table(name = "ustat_role")
-@Data
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor
 public class Role {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "role_id")
     private Long id;
 
     @Column(name = "role")
-    private Role role;
+    private String role;
 
-    public static class Builder{
-        private Long id;
-        private String role;
 
-        public Builder(String role){
-            this.role = role;
-        }
-
-        public Role build(){
-            Role role = new Role();
-            role.role= role;
-            return role;
-        }
+    public Long getId() {
+        return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 }

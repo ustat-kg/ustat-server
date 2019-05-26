@@ -1,9 +1,9 @@
 package com.example.USTAT.bootstrap;
 
 import com.example.USTAT.enums.Gender;
-import com.example.USTAT.enums.Level;
 import com.example.USTAT.model.Student;
 import com.example.USTAT.model.User;
+import com.example.USTAT.repository.RoleRepository;
 import com.example.USTAT.repository.StudentRepository;
 import com.example.USTAT.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +19,25 @@ public class MainBootstrap implements CommandLineRunner {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private RoleRepository roleRepository;
+
+
+
     @Override
     public void run(String... args) throws Exception {
-        User user1 = new User.Builder("aselia", "123").build();
 
-        Student student = new Student.Builder( user1, "Aselia Azimkanova", 16, Gender.Female, "+123",
-                "aselia.azimkanova@gmail.com").withLevelOfSubject(Level.Advanced).build();
-
+        User user1 = new User();
+        user1.setLogin("aselia");
+        user1.setPassword("123456");
+        user1.setName("Aselia");
+        user1.setLastName("Azimkanova");
+        user1.setEmail("aselia.azimkanova@gmail.com");
         userRepository.save(user1);
-        studentRepository.save(student);
+
+        Student student1 = new Student.Builder
+                (user1,16, Gender.Female,"+123").build();
+        studentRepository.save(student1);
+
     }
 }

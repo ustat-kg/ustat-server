@@ -1,33 +1,52 @@
 package com.example.USTAT.model;
 
-import jdk.jfr.DataAmount;
-import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 
-
 @Data
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "ustat_user")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @Column(name = "user_id")
+    private int id;
 
-    @Column(name = "login", nullable = false, unique = true, length = 50)
+    @Column(name = "login",unique = true , length = 25)
     private String login;
 
-    @Column(name = "password", nullable = false, length = 50)
-    //@JsonIgnore
+    @Column(name = "password")
+    @Length(min = 5, message = "*Your password must have at least 5 characters")
+    @NotEmpty(message = "*Please provide your password")
     private String password;
 
-    @Column(name = "is_active", nullable = false)
-    private int isActive;
+    @Column(name = "name")
+    @NotEmpty(message = "*Please provide your name")
+    private String name;
+
+    @Column(name = "last_name")
+    @NotEmpty(message = "*Please provide your last name")
+    private String lastName;
+
+    @Column(name = "email")
+    @Email(message = "*Please provide a valid Email")
+    @NotEmpty(message = "*Please provide an email")
+    private String email;
+
+    @Column(name = "active")
+    private int active;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "user_role",
@@ -35,25 +54,67 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-    public static class Builder{
-        private Long id;
-        private String login;
-        private String password;
-        private int isActive;
-        private Set<Role> roles;
+    public String getLogin() {
+        return login;
+    }
 
-        public Builder(String login, String password,Set<Role> roles ){
-            this.login = login;
-            this.password = password;
-            this.roles = roles;
-        }
+    public void setLogin(String login) {
+        this.login = login;
+    }
 
-        public User build(){
-            User user = new User();
-            user.login = login;
-            user.password = password;
-            user.roles = roles;
-            return user;
-        }
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public int getActive() {
+        return active;
+    }
+
+    public void setActive(int active) {
+        this.active = active;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }
