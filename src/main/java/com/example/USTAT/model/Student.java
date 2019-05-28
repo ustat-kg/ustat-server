@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 
 @Entity
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor
 @Data
 @Table(name = "ustat_student")
 public class Student {
