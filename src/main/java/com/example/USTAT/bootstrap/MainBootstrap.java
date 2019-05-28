@@ -39,9 +39,9 @@ public class MainBootstrap implements CommandLineRunner {
         Role admin = new Role("ADMIN");
         Role user = new Role("USER");
         Role guest = new Role("GUEST");
-        roleRepository.save(admin);
-        roleRepository.save(user);
-        roleRepository.save(guest);
+//        roleRepository.save(admin);
+//        roleRepository.save(user);
+//        roleRepository.save(guest);
 
         User user1 = new User();
         user1.setLogin("aselia");

@@ -65,6 +65,7 @@ public class Student {
             student.gender = gender;
             student.avatar = avatar;
             student.phoneNumber = phoneNumber;
+            student.user = user;
             return student;
         }
     }
