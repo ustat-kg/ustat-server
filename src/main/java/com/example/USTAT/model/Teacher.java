@@ -1,10 +1,12 @@
 package com.example.USTAT.model;
 
 import com.example.USTAT.enums.Gender;
+import com.example.USTAT.enums.Location;
 import org.jboss.logging.Message;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 @Entity
 @Table(name = "ustat_teacher")
@@ -31,8 +33,17 @@ public class Teacher {
 
     private Float raiting;
 
-
     private Double costOfHour;
+
+    private String phoneNumber;
+
+    private String importantLinks;
+
+    private List subjects;
+
+    private Location location;
+
+    //private List<Request> requests;
 
 
 
