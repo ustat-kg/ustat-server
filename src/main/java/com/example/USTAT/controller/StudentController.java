@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping(StudentController.URL_STUDENT)
 public class StudentController {
 
-    public static final String URL_STUDENT = "ustat/student/"; /*start url for all requests
+    public static final String URL_STUDENT = "/ustat/"; /*start url for all requests
      in class Student*/
 
     @Autowired
@@ -24,7 +24,7 @@ public class StudentController {
         return this.studentService.getStudentById(id);
     }
 
-    @GetMapping(path = "admin/getAllStudents", //returns all students
+    @GetMapping(path = "/getAllStudents", //returns all students
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public List<Student> getAllStudent() {
         return this.studentService.getAllStudents();
@@ -48,7 +48,7 @@ public class StudentController {
         this.studentService.deleteStudentById(id);
     }
 
-    @DeleteMapping(path = "admin/deleteAllStudents", //deletes all students
+    @DeleteMapping(path = "/admin/deleteAllStudents", //deletes all students
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public void deleteAllStudents() {
         this.studentService.deleteAllStudents();
