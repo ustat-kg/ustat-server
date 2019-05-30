@@ -19,31 +19,31 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
-//    @RequestMapping(value={"/", "/login"}, method = RequestMethod.GET)
-//    public ModelAndView login(){
-////        ModelAndView modelAndView = new ModelAndView();
-////        modelAndView.setViewName("login");
-////        return modelAndView;
-////        String SQL = "select count(*) as cnt from shop where login = ? and passwords = ?";
-////        int count = 0;
-////        try (Connection conn = connect();
-////             PreparedStatement stmt = conn.prepareStatement(SQL)
-////        ) {
-////            stmt.setString(1, reg.getName());
-////            stmt.setString(2, reg.getPassword());
-////            ResultSet rs = stmt.executeQuery();
-////            if (rs.next()) {
-////                count = rs.getInt("cnt");
-////            }
-////
-////        } catch (SQLException ex) {
-////            System.out.println(ex.getMessage());
-////            // Write Fail to Log
-////            return false;
-////        }
-////        return true;
-//        //return  ;
-//    }
+    @RequestMapping(value={"/", "/login"}, method = RequestMethod.GET)
+    public ModelAndView login(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("login");
+        return modelAndView;
+//        String SQL = "select count(*) as cnt from shop where login = ? and passwords = ?";
+//        int count = 0;
+//        try (Connection conn = connect();
+//             PreparedStatement stmt = conn.prepareStatement(SQL)
+//        ) {
+//            stmt.setString(1, reg.getName());
+//            stmt.setString(2, reg.getPassword());
+//            ResultSet rs = stmt.executeQuery();
+//            if (rs.next()) {
+//                count = rs.getInt("cnt");
+//            }
+//
+//        } catch (SQLException ex) {
+//            System.out.println(ex.getMessage());
+//            // Write Fail to Log
+//            return false;
+//        }
+//        return true;
+        //return  ;
+    }
 
 
     @RequestMapping(value="/registration", method = RequestMethod.GET)
