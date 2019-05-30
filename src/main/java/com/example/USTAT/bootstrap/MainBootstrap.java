@@ -48,7 +48,7 @@ public class MainBootstrap implements CommandLineRunner {
         user1.setPassword(cryptPasswordEncoder.encode("123456"));
         user1.setName("Aselia");
         user1.setLastName("Azimkanova");
-       // user1.setEmail("aselia.azimkanova@gmail.com");
+        user1.setEmail("aselia.azimkanova@gmail.com");
         user1.setActive(1);
         user1.setRoles(new HashSet<>(Arrays.asList(admin,user,guest)));
         userRepository.save(user1);
