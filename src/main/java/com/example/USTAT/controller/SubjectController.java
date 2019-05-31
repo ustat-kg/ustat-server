@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Component
+@RestController
 @RequestMapping(SubjectController.URL_SUBJECT)
 public class SubjectController {
 
