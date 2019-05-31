@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/ustat/login").permitAll()
                 .antMatchers("/ustat/registration").permitAll()
                 .antMatchers("/ustat/admin/**").hasAuthority("ADMIN")
-                .antMatchers("/ustat/admin/getAllStudents").hasAuthority("ADMIN")
+                .antMatchers("/ustat/getAllStudents").hasAuthority("USER")
                 .antMatchers("/ustat/getStudent/{id}").permitAll().anyRequest()
                 .authenticated().and().csrf().disable().formLogin()
                 .loginPage("/ustat/login").permitAll().failureUrl("/ustat/login?error=true")

@@ -43,7 +43,6 @@ public class User {
     private String lastName;
 
     @Column(name = "login")
-
     @NotEmpty(message = "*Please provide an login")
     private String login;
 

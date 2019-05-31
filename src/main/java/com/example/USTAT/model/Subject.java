@@ -15,16 +15,16 @@ public class Subject {
     @Column(name = "subject")
     private String name;
 
-    @NotEmpty
-    @Column(name = "costOfHour")
-    private Double costOfHour;
+//    @NotEmpty
+//    @Column(name = "costOfHour")
+//    private Double costOfHour;
 
     public Subject() {
     }
 
-    public Subject(@NotEmpty String name, @NotEmpty Double costOfHour) {
+    public Subject(@NotEmpty String name/*, @NotEmpty Double costOfHour*/) {
         this.name = name;
-        this.costOfHour = costOfHour;
+      //  this.costOfHour = costOfHour;
     }
 
     public Long getId() {
@@ -43,11 +43,11 @@ public class Subject {
         this.name = name;
     }
 
-    public Double getCostOfHour() {
-        return costOfHour;
-    }
-
-    public void setCostOfHour(Double costOfHour) {
-        this.costOfHour = costOfHour;
-    }
+//    public Double getCostOfHour() {
+//        return costOfHour;
+//    }
+//
+//    public void setCostOfHour(Double costOfHour) {
+//        this.costOfHour = costOfHour;
+//    }
 }

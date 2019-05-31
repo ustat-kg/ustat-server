@@ -76,5 +76,79 @@ public class MainBootstrap implements CommandLineRunner {
         locationRepository.save(location7);
         locationRepository.save(location8);
 
+
+        Subject subject1 = new Subject("Drawing");
+        Subject subject2 = new Subject("Painting");
+        Subject subject3 = new Subject("Making Origami");
+        Subject subject4 = new Subject("Piano");
+        Subject subject5 = new Subject("Violin");
+        Subject subject6 = new Subject("Acting Skills");
+        Subject subject7 = new Subject("Marketing");
+        Subject subject8 = new Subject("Research");
+        Subject subject9 = new Subject("SMM");
+        Subject subject10 = new Subject("Couching");
+        Subject subject11 = new Subject("Java");
+        Subject subject12 = new Subject("Python");
+        Subject subject13 = new Subject("HTML And CSS");
+        Subject subject14 = new Subject("JavaScript");
+        Subject subject15 = new Subject("PHP");
+        Subject subject16 = new Subject("Android");
+        Subject subject17 = new Subject("IOS");
+        Subject subject18 = new Subject("English Language");
+        Subject subject19 = new Subject("Russian Language");
+        Subject subject20 = new Subject("Kyrgyz Language");
+        Subject subject21 = new Subject("French Language");
+        Subject subject22 = new Subject("German Language");
+        Subject subject23 = new Subject("Chinese Language");
+        Subject subject24 = new Subject("Korean Language");
+        Subject subject25 = new Subject("Spanish Language");
+        Subject subject26 = new Subject("Algebra");
+        Subject subject27 = new Subject("Math");
+        Subject subject28 = new Subject("Biology");
+        Subject subject29 = new Subject("Geographic");
+        Subject subject30 = new Subject("Preschool Education");
+        Subject subject31 = new Subject("Geometry");
+        Subject subject32 = new Subject("C1");
+        Subject subject33 = new Subject("Excel");
+        Subject subject34 = new Subject("Word");
+
+        subjectRepository.save(subject1);
+        subjectRepository.save(subject2);
+        subjectRepository.save(subject3);
+        subjectRepository.save(subject4);
+        subjectRepository.save(subject5);
+        subjectRepository.save(subject6);
+        subjectRepository.save(subject7);
+        subjectRepository.save(subject8);
+        subjectRepository.save(subject9);
+        subjectRepository.save(subject10);
+        subjectRepository.save(subject11);
+        subjectRepository.save(subject12);
+        subjectRepository.save(subject13);
+        subjectRepository.save(subject14);
+        subjectRepository.save(subject15);
+        subjectRepository.save(subject16);
+        subjectRepository.save(subject17);
+        subjectRepository.save(subject18);
+        subjectRepository.save(subject19);
+        subjectRepository.save(subject20);
+        subjectRepository.save(subject21);
+        subjectRepository.save(subject22);
+        subjectRepository.save(subject23);
+        subjectRepository.save(subject24);
+        subjectRepository.save(subject25);
+        subjectRepository.save(subject26);
+        subjectRepository.save(subject27);
+        subjectRepository.save(subject28);
+        subjectRepository.save(subject29);
+        subjectRepository.save(subject30);
+        subjectRepository.save(subject31);
+        subjectRepository.save(subject32);
+        subjectRepository.save(subject33);
+        subjectRepository.save(subject34);
+
+
+
+
     }
 }
