@@ -41,7 +41,7 @@ public class Teacher {
 
     private List subjects;
 
-    private Location location;
+   // private Location location;
 
     //private List<Request> requests;
 
