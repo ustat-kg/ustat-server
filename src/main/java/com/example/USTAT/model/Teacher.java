@@ -2,7 +2,9 @@ package com.example.USTAT.model;
 
 import com.example.USTAT.enums.Gender;
 import com.example.USTAT.enums.Location;
+import org.hibernate.validator.constraints.Length;
 import org.jboss.logging.Message;
+import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -16,8 +18,8 @@ public class Teacher {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-
-    @NotEmpty(message = "Please tell us about yourself ")
+    @NotEmpty(message = "Please tell us about yourself")
+    @Length(max = 150)
     private String shortInfoAboutYou;
 
     @NotEmpty(message = "How old are you?")
@@ -29,19 +31,22 @@ public class Teacher {
     private String avatar;
 
     @NotEmpty(message = "Please tell us about you studies")
+    @Length(max = 500)
     private String formalBackground;
 
     private Float raiting;
 
     private Double costOfHour;
 
+    @NotEmpty(message = "What is your phone number?")
+    @Length(max = 12)
     private String phoneNumber;
 
     private String importantLinks;
 
-    private List subjects;
+    private List<Subject> subjects;
 
-   // private Location location;
+    // private Location location;
 
     //private List<Request> requests;
 
