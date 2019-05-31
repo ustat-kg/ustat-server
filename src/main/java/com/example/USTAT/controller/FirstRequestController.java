@@ -21,5 +21,4 @@ public class FirstRequestController {
         request.setGender(firstRequest.getGender());
         request.setLocation(firstRequest.getLocation());
     }
-    
 }
