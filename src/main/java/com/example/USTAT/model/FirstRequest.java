@@ -3,7 +3,6 @@ package com.example.USTAT.model;
 import com.example.USTAT.enums.Cost;
 import com.example.USTAT.enums.Gender;
 import com.example.USTAT.enums.Level;
-import com.example.USTAT.enums.Location;
 
 public class FirstRequest {
     private Long id;

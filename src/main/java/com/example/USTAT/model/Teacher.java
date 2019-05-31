@@ -1,7 +1,6 @@
 package com.example.USTAT.model;
 
 import com.example.USTAT.enums.Gender;
-import com.example.USTAT.enums.Location;
 import org.hibernate.validator.constraints.Length;
 import org.jboss.logging.Message;
 import org.springframework.format.annotation.NumberFormat;
@@ -46,7 +45,7 @@ public class Teacher {
 
     private List<Subject> subjects;
 
-    // private Location location;
+    private Location location;
 
     //private List<Request> requests;
 
