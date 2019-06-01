@@ -31,7 +31,7 @@ public class Teacher {
     @Length(max = 500)
     private String formalBackground;
 
-    private Float raiting;
+    private Float rating;
 
     @NotEmpty(message = "What is your phone number?")
     @Length(max = 12)
@@ -113,11 +113,11 @@ public class Teacher {
     }
 
     public Float getRaiting() {
-        return raiting;
+        return rating;
     }
 
     public void setRaiting(Float raiting) {
-        this.raiting = raiting;
+        this.rating = raiting;
     }
 
     public String getPhoneNumber() {

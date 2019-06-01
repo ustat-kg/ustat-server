@@ -3,6 +3,7 @@ package com.example.USTAT.controller;
 import com.example.USTAT.model.User;
 import com.example.USTAT.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RestController
@@ -92,6 +94,13 @@ public class LoginController {
 //    public User saveUser{
 //        return this.userService.saveUser(user);
 //    }
+
+    @GetMapping(path = "/ustat/getAllUsers" ,
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public List<User> getAllUsers(){
+        return userService.getAllUsers();
+    }
+
 
 
 }
