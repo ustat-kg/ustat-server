@@ -16,7 +16,7 @@ public class SubjectController {
     @Autowired
     private SubjectService subjectService;
 
-    @GetMapping(path = "/subject/{id}",
+    @GetMapping(path = "/getSubject/{id}",
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public Response getSubjectById(@PathVariable Long id){
         return new Response(true,"Getting subject by id",subjectService.findSubjectById(id));

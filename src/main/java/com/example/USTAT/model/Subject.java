@@ -7,7 +7,7 @@ import javax.validation.constraints.NotEmpty;
 @Table(name = "ustat_subjects")
 public class Subject {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "subject_id")
     private Long id;
 

@@ -45,13 +45,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.
                 authorizeRequests()
-               // .antMatchers("/").permitAll()
-               // .antMatchers("/ustat/login").permitAll()
-               // .antMatchers("/ustat/registration").permitAll()
-                .antMatchers("/ustat/admin/**").hasAuthority("USER")
-                .antMatchers("/ustat/getAllStudents").hasAuthority("USER")
-                .antMatchers("/ustat/getAllSubject").permitAll()
-                .antMatchers("/ustat/getStudent/{id}").permitAll()
+                .antMatchers("/**").permitAll()
+                // .antMatchers("/ustat/login").permitAll()
+                // .antMatchers("/ustat/registration").permitAll()
+                //  .antMatchers("/ustat/admin/**").hasAuthority("USER")
+                // .antMatchers("/ustat/getAllStudents").hasAuthority("USER")
+                //.antMatchers("/ustat/getAllSubject").permitAll()
+                //.antMatchers("/ustat/getStudent/{id}").permitAll()
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .and().csrf().disable();

@@ -7,7 +7,7 @@ import javax.validation.constraints.NotEmpty;
 @Table(name = "ustat_location")
 public class Location {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "location_name",length = 50)
