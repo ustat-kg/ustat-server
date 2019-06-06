@@ -1,6 +1,7 @@
 package com.example.USTAT.controller;
 
 import com.example.USTAT.model.FirstRequest;
+import com.example.USTAT.model.Response;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,7 +13,7 @@ public class FirstRequestController {
 
     @PostMapping(path = "/ustat/" ,
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public void saveFirstRequest(@RequestBody FirstRequest firstRequest){
+    public Response saveFirstRequest(@RequestBody FirstRequest firstRequest){
         FirstRequest request = new FirstRequest();
         request.setId(firstRequest.getId());
         request.setLevelOfTeacher(firstRequest.getLevelOfTeacher());
@@ -20,5 +21,6 @@ public class FirstRequestController {
         request.setCost(firstRequest.getCost());
         request.setGender(firstRequest.getGender());
         request.setLocation(firstRequest.getLocation());
+        return new Response(true,"saving first request" , null);
     }
 }
