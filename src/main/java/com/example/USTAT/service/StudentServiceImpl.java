@@ -5,6 +5,7 @@ import com.example.USTAT.model.Student;
 import com.example.USTAT.repository.RoleRepository;
 import com.example.USTAT.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -14,9 +15,11 @@ import java.util.List;
 @Service
 public class StudentServiceImpl implements StudentService {
 
+    @Qualifier("studentRepository")
     @Autowired
     private StudentRepository studentRepository;
 
+    @Qualifier("roleRepository")
     @Autowired
     private RoleRepository roleRepository;
 

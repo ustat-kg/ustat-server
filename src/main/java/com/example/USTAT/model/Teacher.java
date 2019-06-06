@@ -15,6 +15,10 @@ public class Teacher {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     @NotEmpty(message = "Please tell us about yourself")
     @Length(max = 150)
     private String shortInfoAboutYou;
@@ -48,8 +52,8 @@ public class Teacher {
     //private List<Request> requests;
 
 
-    public Teacher(@NotEmpty(message = "Please tell us about yourself") @Length(max = 150) String shortInfoAboutYou, @NotEmpty(message = "How old are you?") int age, @NotEmpty(message = "Your gender") Gender gender, String avatar, @NotEmpty(message = "Please tell us about you studies") @Length(max = 500) String formalBackground, @NotEmpty(message = "What is your phone number?") @Length(max = 12) String phoneNumber,
-                   String importantLinks, List<Subject> subjects, Location location) {
+    public Teacher(User user, @NotEmpty(message = "Please tell us about yourself") @Length(max = 150) String shortInfoAboutYou, @NotEmpty(message = "How old are you?") int age, @NotEmpty(message = "Your gender") Gender gender, String avatar, @NotEmpty(message = "Please tell us about you studies") @Length(max = 500) String formalBackground, @NotEmpty(message = "What is your phone number?") @Length(max = 12) String phoneNumber, String importantLinks, List<Subject> subjects, Location location) {
+        this.user = user;
         this.shortInfoAboutYou = shortInfoAboutYou;
         this.age = age;
         this.gender = gender;
@@ -59,6 +63,22 @@ public class Teacher {
         this.importantLinks = importantLinks;
         this.subjects = subjects;
         this.location = location;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Float getRating() {
+        return rating;
+    }
+
+    public void setRating(Float rating) {
+        this.rating = rating;
     }
 
     public Teacher() {
@@ -116,8 +136,8 @@ public class Teacher {
         return rating;
     }
 
-    public void setRaiting(Float raiting) {
-        this.rating = raiting;
+    public void setRaiting(Float rating) {
+        this.rating = rating;
     }
 
     public String getPhoneNumber() {

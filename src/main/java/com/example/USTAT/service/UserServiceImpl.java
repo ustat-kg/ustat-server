@@ -5,6 +5,7 @@ import com.example.USTAT.model.User;
 import com.example.USTAT.repository.RoleRepository;
 import com.example.USTAT.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +14,13 @@ import java.util.HashSet;
 import java.util.List;
 
 @Service
-public class UserSeviceImpl implements UserService{
+public class UserServiceImpl implements UserService{
 
+    @Qualifier("userRepository")
     @Autowired
     private UserRepository userRepository;
+
+    @Qualifier("roleRepository")
     @Autowired
     private RoleRepository roleRepository;
     @Autowired

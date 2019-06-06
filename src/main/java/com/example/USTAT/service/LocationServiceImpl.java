@@ -3,6 +3,7 @@ package com.example.USTAT.service;
 import com.example.USTAT.model.Location;
 import com.example.USTAT.repository.LocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
 @Service
 public class LocationServiceImpl  implements LocationService{
 
+    @Qualifier("locationRepository")
     @Autowired
     private LocationRepository locationRepository;
 
