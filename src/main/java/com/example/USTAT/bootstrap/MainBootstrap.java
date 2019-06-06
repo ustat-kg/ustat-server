@@ -4,6 +4,7 @@ import com.example.USTAT.enums.Gender;
 import com.example.USTAT.model.*;
 import com.example.USTAT.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -14,21 +15,28 @@ import java.util.HashSet;
 @Component
 public class MainBootstrap implements CommandLineRunner {
 
+
+    @Qualifier("studentRepository")
     @Autowired
     private StudentRepository studentRepository;
 
+
+    @Qualifier("userRepository")
     @Autowired
     private UserRepository userRepository;
 
+    @Qualifier("roleRepository")
     @Autowired
     private RoleRepository roleRepository;
 
     @Autowired
     private BCryptPasswordEncoder cryptPasswordEncoder;
 
+    @Qualifier("locationRepository")
     @Autowired
     private LocationRepository locationRepository;
 
+    @Qualifier("subjectRepository")
     @Autowired
     private SubjectRepository subjectRepository;
 
@@ -40,9 +48,9 @@ public class MainBootstrap implements CommandLineRunner {
         Role admin = new Role("ADMIN");
         Role user = new Role("USER");
         Role guest = new Role("GUEST");
-//        roleRepository.save(admin);
-//        roleRepository.save(user);
-//        roleRepository.save(guest);
+        roleRepository.save(admin);
+        roleRepository.save(user);
+        roleRepository.save(guest);
 
         User user1 = new User();
         user1.setLogin("aselia");
@@ -51,12 +59,32 @@ public class MainBootstrap implements CommandLineRunner {
         user1.setLastName("Azimkanova");
         user1.setEmail("aselia.azimkanova@gmail.com");
         user1.setActive(1);
+        userRepository.save(user1);
         user1.setRoles(new HashSet<>(Arrays.asList(admin,user,guest)));
         userRepository.save(user1);
+
+
+        User user2 = new User();
+        user2.setLogin("don");
+        user2.setPassword(cryptPasswordEncoder.encode("123456"));
+        user2.setName("Alex");
+        user2.setLastName("Don");
+        user2.setEmail("alex.don@gmail.com");
+        user2.setActive(1);
+        userRepository.save(user2);
+        user2.setRoles(new HashSet<>(Arrays.asList(user)));
+        userRepository.save(user2);
+
+
+
 
         Student student1 = new Student.Builder
                 (user1,16, Gender.Female,"+123").build();
         studentRepository.save(student1);
+
+        Student student2 = new Student.Builder
+                (user2,20, Gender.Female,"+456").build();
+        studentRepository.save(student2);
 
 
         Location location1 = new Location("Bishkek,KG");

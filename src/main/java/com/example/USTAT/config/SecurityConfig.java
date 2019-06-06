@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -40,33 +39,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(bCryptPasswordEncoder);
     }
 
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         http.
                 authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers("/ustat/login").permitAll()
-                .antMatchers("/ustat/registration").permitAll()
-                .antMatchers("/ustat/admin/**").hasAuthority("ADMIN")
+               // .antMatchers("/").permitAll()
+               // .antMatchers("/ustat/login").permitAll()
+               // .antMatchers("/ustat/registration").permitAll()
+                .antMatchers("/ustat/admin/**").hasAuthority("USER")
                 .antMatchers("/ustat/getAllStudents").hasAuthority("USER")
-                .antMatchers("/ustat/getStudent/{id}").permitAll().anyRequest()
-                .authenticated().and().csrf().disable().formLogin()
-                .loginPage("/ustat/login").permitAll().failureUrl("/ustat/login?error=true")
-                .defaultSuccessUrl("/ustat/admin/home")
-                .usernameParameter("email")
-                .passwordParameter("password")
-                .and().logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/ustat/logout"))
-                .logoutSuccessUrl("/").and().exceptionHandling()
-                .accessDeniedPage("/access-denied");
+                .antMatchers("/ustat/getAllSubject").permitAll()
+                .antMatchers("/ustat/getStudent/{id}").permitAll()
+                .and()
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .and().csrf().disable();
     }
-
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web
-                .ignoring()
-                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
-    }
+//
+//    @Override
+//    public void configure(WebSecurity web) throws Exception {
+//        web
+//                .ignoring()
+//                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
+//    }
 
 }

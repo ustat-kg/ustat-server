@@ -14,7 +14,6 @@ import java.util.Set;
 @Data
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "ustat_user")
 public class User {
@@ -32,7 +31,7 @@ public class User {
     @Column(name = "password")
     @Length(min = 5, message = "*Your password must have at least 5 characters")
     @NotEmpty(message = "*Please provide your password")
-    private String password;
+        private String password;
 
     @Column(name = "name")
     @NotEmpty(message = "*Please provide your name")
@@ -54,6 +53,21 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
+
+
+    public User(@NotEmpty() @Email(message = "*Please provide a valid Email") String email,
+                @Length(min = 5, message = "*Your password must have at least 5 characters") @NotEmpty(message = "*Please provide your password") String password, @NotEmpty(message = "*Please provide your name") String name, @NotEmpty(message = "*Please provide your last name") String lastName, @NotEmpty(message = "*Please provide an login") String login, int active, Set<Role> roles) {
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.lastName = lastName;
+        this.login = login;
+        this.active = active;
+        this.roles = roles;
+    }
+
+    public User() {
+    }
 
     public String getLogin() {
         return login;

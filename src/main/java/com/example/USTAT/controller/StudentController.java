@@ -38,7 +38,7 @@ public class StudentController {
 
     @PostMapping(path = "/updateStudent", // updates data of one student
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public Student udpateStudent(@RequestBody Student student) {
+    public Student updateStudent(@RequestBody Student student) {
         return this.studentService.updateStudent(student);
     }
 
