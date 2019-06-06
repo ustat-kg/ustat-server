@@ -9,8 +9,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 @Component
 public class MainBootstrap implements CommandLineRunner {
@@ -40,6 +42,9 @@ public class MainBootstrap implements CommandLineRunner {
     @Autowired
     private SubjectRepository subjectRepository;
 
+    @Qualifier("teacherRepository")
+    @Autowired
+    private TeacherRepository teacherRepository;
 
 
     @Override
@@ -60,7 +65,7 @@ public class MainBootstrap implements CommandLineRunner {
         user1.setEmail("aselia.azimkanova@gmail.com");
         user1.setActive(1);
         userRepository.save(user1);
-        user1.setRoles(new HashSet<>(Arrays.asList(admin,user,guest)));
+        user1.setRoles(new HashSet<>(Arrays.asList(admin, user, guest)));
         userRepository.save(user1);
 
 
@@ -76,15 +81,16 @@ public class MainBootstrap implements CommandLineRunner {
         userRepository.save(user2);
 
 
-
-
-        Student student1 = new Student.Builder
-                (user1,16, Gender.Female,"+123").build();
-        studentRepository.save(student1);
-
-        Student student2 = new Student.Builder
-                (user2,20, Gender.Female,"+456").build();
-        studentRepository.save(student2);
+        User user3 = new User();
+        user3.setLogin("mike");
+        user3.setPassword(cryptPasswordEncoder.encode("123456"));
+        user3.setName("Mike");
+        user3.setLastName("Smith");
+        user3.setEmail("mike.smith@gmail.com");
+        user3.setActive(1);
+        userRepository.save(user3);
+        user2.setRoles(new HashSet<>(Arrays.asList(user)));
+        userRepository.save(user3);
 
 
         Location location1 = new Location("Bishkek,KG");
@@ -103,6 +109,7 @@ public class MainBootstrap implements CommandLineRunner {
         locationRepository.save(location6);
         locationRepository.save(location7);
         locationRepository.save(location8);
+
 
 
         Subject subject1 = new Subject("Drawing");
@@ -176,7 +183,21 @@ public class MainBootstrap implements CommandLineRunner {
         subjectRepository.save(subject34);
 
 
+        Student student1 = new Student.Builder
+                (user1, 16, Gender.Female, "+123").build();
+        studentRepository.save(student1);
 
+        Student student2 = new Student.Builder
+                (user2, 20, Gender.Female, "+456").build();
+        studentRepository.save(student2);
+
+        List<Subject> subjects = new ArrayList<>();
+        subjects.add(subject11);
+        subjects.add(subject13);
+
+        Teacher teacher = new Teacher.Builder(user3, "My name is Mike", 35, Gender.Male, "Know Java",
+                "+123456", subjects, location1).build();
+        teacherRepository.save(teacher);
 
     }
 }

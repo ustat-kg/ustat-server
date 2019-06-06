@@ -51,18 +51,45 @@ public class Teacher {
 
     //private List<Request> requests;
 
+    public static class Builder{
+        private Long id;
+        private User user;
+        private String shortInfoAboutYou;
+        private int age;
+        private Gender gender;
+        private String avatar;
+        private String formalBackground;
+        private Float rating;
+        private String phoneNumber;
+        private String importantLinks;
+        private List<Subject> subjects;
+        private Location location;
 
-    public Teacher(User user, @NotEmpty(message = "Please tell us about yourself") @Length(max = 150) String shortInfoAboutYou, @NotEmpty(message = "How old are you?") int age, @NotEmpty(message = "Your gender") Gender gender, String avatar, @NotEmpty(message = "Please tell us about you studies") @Length(max = 500) String formalBackground, @NotEmpty(message = "What is your phone number?") @Length(max = 12) String phoneNumber, String importantLinks, List<Subject> subjects, Location location) {
-        this.user = user;
-        this.shortInfoAboutYou = shortInfoAboutYou;
-        this.age = age;
-        this.gender = gender;
-        this.avatar = avatar;
-        this.formalBackground = formalBackground;
-        this.phoneNumber = phoneNumber;
-        this.importantLinks = importantLinks;
-        this.subjects = subjects;
-        this.location = location;
+        public Builder(User user,String shortInfoAboutYou, int age,Gender gender,
+                       String formalBackground,String phoneNumber,List<Subject> subjects,Location location){
+            this.user = user;
+            this.shortInfoAboutYou = shortInfoAboutYou;
+            this.age = age;
+            this.gender = gender;
+            this.formalBackground = formalBackground;
+            this.phoneNumber = phoneNumber;
+            this.subjects = subjects;
+            this.location = location;
+        }
+
+        public Teacher build() {
+            Teacher teacher = new Teacher();
+            teacher.user = user;
+            teacher.shortInfoAboutYou = shortInfoAboutYou;
+            teacher.age = age;
+            teacher.gender = gender;
+            teacher.formalBackground = formalBackground;
+            teacher.phoneNumber = phoneNumber;
+            teacher.subjects = subjects;
+            teacher.location = location;
+            return teacher;
+        }
+
     }
 
     public User getUser() {
