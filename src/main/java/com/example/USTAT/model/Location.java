@@ -11,7 +11,6 @@ public class Location {
     private Long id;
 
     @Column(name = "location_name",length = 50)
-    @NotEmpty
     private String locationName;
 
     public Location() {
@@ -40,5 +39,13 @@ public class Location {
 
     public void setLocationName(String locationName) {
         this.locationName = locationName;
+    }
+
+    @Override
+    public String toString() {
+        return "Location{" +
+                "id=" + id +
+                ", locationName='" + locationName + '\'' +
+                '}';
     }
 }

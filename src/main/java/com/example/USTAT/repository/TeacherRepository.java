@@ -1,16 +1,30 @@
 package com.example.USTAT.repository;
 
 import com.example.USTAT.model.Teacher;
+import com.example.USTAT.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-@Repository("teacherRepository")
+import java.util.List;
+
+
+
+@Repository
 public interface TeacherRepository
         extends JpaRepository<Teacher,Long> {
-//
-//    @Query("select p from Payment p join fetch p.client c " +
-//            "where c.phoneNo = coalesce(:phoneNo, c.phoneNo) " +
-//            "and c.fio = coalesce(:fio, c.fio) " +
-//            "and p.status = coalesce(:status, p.status) " +
-//            "")
+
+    List<Teacher> findAllBySubjects (String subject);
+
+    @Query("select u from User u where login = :login")
+    User getUserByLogin (@Param("login") String login);
+
+    @Query("select t from Teacher t where t.subjects = :subject")
+    List<Teacher> getAllBySubject(String subject);
+
+//    @Query("select t from Teacher t where t.age = :age")
+//    List<Teacher> getAllByAge(Integer age);
+
+    List<Teacher> getAllByAge(Integer age);
 }

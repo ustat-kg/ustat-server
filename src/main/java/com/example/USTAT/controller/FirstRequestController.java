@@ -15,7 +15,6 @@ public class FirstRequestController {
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public Response saveFirstRequest(@RequestBody FirstRequest firstRequest){
         FirstRequest request = new FirstRequest();
-        request.setId(firstRequest.getId());
         request.setLevelOfTeacher(firstRequest.getLevelOfTeacher());
         request.setAge(firstRequest.getAge());
         request.setCost(firstRequest.getCost());

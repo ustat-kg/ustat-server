@@ -9,22 +9,17 @@ public class Subject {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "subject_id")
-    private Long id;
+    public Long id;
 
     @NotEmpty
     @Column(name = "subject")
-    private String name;
-
-//    @NotEmpty
-//    @Column(name = "costOfHour")
-//    private Double costOfHour;
+    public String name;
 
     public Subject() {
     }
 
-    public Subject(@NotEmpty String name/*, @NotEmpty Double costOfHour*/) {
+    public Subject(@NotEmpty String name) {
         this.name = name;
-      //  this.costOfHour = costOfHour;
     }
 
     public Long getId() {
@@ -43,11 +38,11 @@ public class Subject {
         this.name = name;
     }
 
-//    public Double getCostOfHour() {
-//        return costOfHour;
-//    }
-//
-//    public void setCostOfHour(Double costOfHour) {
-//        this.costOfHour = costOfHour;
-//    }
+    @Override
+    public String toString() {
+        return "Subject{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

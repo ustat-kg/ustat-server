@@ -56,4 +56,9 @@ public class TeacherServiceImpl implements TeacherService {
     public void deleteAllTeachers() {
         this.teacherRepository.deleteAll();
     }
+
+//    @Override
+//    public List<Teacher> getAllByAge(Integer age) {
+//        return this.teacherRepository.getAllByAge(age);
+//    }
 }

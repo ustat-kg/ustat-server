@@ -2,10 +2,12 @@ package com.example.USTAT.controller;
 
 import com.example.USTAT.model.Response;
 import com.example.USTAT.model.Teacher;
+import com.example.USTAT.repository.TeacherRepository;
 import com.example.USTAT.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequestMapping(TeacherController.URL_TEACHER)
@@ -17,6 +19,9 @@ public class TeacherController {
     @Autowired
     private TeacherService teacherService;
 
+    @Autowired
+    private TeacherRepository teacherRepository;
+
     @GetMapping(path = "/getTeacher/{id}", //returns one teacher by id
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public Response getTeacherById(@PathVariable Long id) {
@@ -27,6 +32,12 @@ public class TeacherController {
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public Response getAllTeachers() {
         return new Response(true,"Getting all teachers" ,this.teacherService.getAllTeachers());
+    }
+
+    @GetMapping(path = "/getAllTeacherByAge/{age}",
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public Response getAllByAge(@PathVariable("age") Integer age){
+        return new Response(true,"Getting all teachers by age", teacherRepository.getAllByAge(age));
     }
 
     @PostMapping(path = "/saveTeacher", //saves one teacher in DataBase
