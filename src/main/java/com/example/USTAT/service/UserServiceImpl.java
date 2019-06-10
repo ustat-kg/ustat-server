@@ -6,6 +6,7 @@ import com.example.USTAT.repository.RoleRepository;
 import com.example.USTAT.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -59,5 +60,6 @@ public class UserServiceImpl implements UserService{
     public void deleteAllUsers() {
         userRepository.deleteAll();
     }
+
 
 }

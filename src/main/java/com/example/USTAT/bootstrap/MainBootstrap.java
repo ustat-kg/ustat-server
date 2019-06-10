@@ -114,7 +114,7 @@ public class MainBootstrap implements CommandLineRunner {
         }
 
 
-        ArrayList<Subject> subjects = new ArrayList<Subject>();
+        ArrayList<Subject> subjects = new ArrayList<>();
         subjects.add(new Subject("Drawing"));
         subjects.add(new Subject("Painting"));
         subjects.add(new Subject("Making Origami"));
@@ -150,6 +150,8 @@ public class MainBootstrap implements CommandLineRunner {
         subjects.add(new Subject("Excel"));
         subjects.add(new Subject("Word"));
 
+
+
         for (int i = 0; i < subjects.size(); i++) {
             subjectRepository.save(subjects.get(i));
         }
@@ -171,14 +173,12 @@ public class MainBootstrap implements CommandLineRunner {
             }
         }
 
-//        Teacher teacher = new Teacher.Builder(user3, "My name is Mike", 35, Gender.Male, "Know Java",
-//                "+123456", subjectHashSet,bishkek).build();
+
         Teacher teacher = new Teacher.Builder(user3,"My name is Mike",35,Gender.Male,
-                "Know JAVA","+1234567",bishkek).subjects(subjectHashSet).build();
-
-
+                "Know JAVA","+1234567",bishkek).avatar("").build();
         teacherRepository.save(teacher);
-
+        teacher.setSubjects(subjectHashSet);
+        teacherRepository.save(teacher);
 
     }
 }

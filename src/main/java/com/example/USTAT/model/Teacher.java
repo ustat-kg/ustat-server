@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -13,10 +14,11 @@ public class Teacher {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ustat_teacher_id")
+    @Column(name = "teacher_id")
     private Long id;
 
     @OneToOne
+    @NotNull
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -44,11 +46,19 @@ public class Teacher {
 
     private String importantLinks;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany()
     @JoinTable(name = "teacher_subject",
-    joinColumns = @JoinColumn(name = "ustat_teacher_id"),
-    inverseJoinColumns = @JoinColumn(name = "subject_id"))
-    private Set<Subject> subjects;
+            joinColumns = @JoinColumn(name = "teacher_id"),
+            inverseJoinColumns = @JoinColumn(name = "subject_id"))
+    private Set<Subject> subjects = new HashSet<>();
+
+
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(name = "user_role",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "role_id"))
+//    private Set<Role> roles;
+
 
     @OneToOne
     private Location location;
@@ -66,11 +76,12 @@ public class Teacher {
         private Float rating;
         private String phoneNumber;
         private String importantLinks;
-        private Set<Subject> subjects;
+        private Set<Subject> subjects= new HashSet<>();
         private Location location;
 
-        public Builder(User user,String shortInfoAboutYou,Integer age,Gender gender,
-                       String formalBackground,String phoneNumber,Location location /*, List<Subject> subjects*/){
+
+        public Builder(User user, String shortInfoAboutYou, Integer age, Gender gender,
+                       String formalBackground, String phoneNumber, Location location /*, List<Subject> subjects*/){
             this.user = user;
             this.shortInfoAboutYou = shortInfoAboutYou;
             this.age = age;
@@ -85,6 +96,13 @@ public class Teacher {
             this.subjects = subjects;
             return this;
         }
+
+        public Builder avatar(String avatar){
+            this.avatar = avatar;
+            return this;
+        }
+
+
 
         public Teacher build() {
             Teacher teacher = new Teacher();

@@ -38,7 +38,7 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public Teacher addTeacher(Teacher teacher) {
         Role role = roleRepository.findAll().stream().filter(x -> x.getRole().equals("USER")).findFirst().get();
-        teacher.getUser().setRoles(new HashSet<>(Arrays.asList(role)));
+//        teacher.getUser().setRoles(new HashSet<>(Arrays.asList(role)));
         return this.teacherRepository.save(teacher);
     }
 

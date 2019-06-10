@@ -1,5 +1,6 @@
 package com.example.USTAT.controller;
 
+import com.example.USTAT.Helper.ToGetCurrentUser;
 import com.example.USTAT.model.FirstRequest;
 import com.example.USTAT.model.Response;
 import org.springframework.http.MediaType;
@@ -11,9 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class FirstRequestController {
 
+    private ToGetCurrentUser toGetCurrentUser;
+
     @PostMapping(path = "/ustat/" ,
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public Response saveFirstRequest(@RequestBody FirstRequest firstRequest){
+        toGetCurrentUser.getCurrentUser();
         FirstRequest request = new FirstRequest();
         request.setLevelOfTeacher(firstRequest.getLevelOfTeacher());
         request.setAge(firstRequest.getAge());

@@ -15,11 +15,11 @@ public class Subject {
     @Column(name = "subject")
     public String name;
 
-    public Subject() {
-    }
-
     public Subject(@NotEmpty String name) {
         this.name = name;
+    }
+
+    public Subject() {
     }
 
     public Long getId() {
@@ -36,13 +36,5 @@ public class Subject {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "Subject{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
     }
 }

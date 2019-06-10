@@ -1,6 +1,7 @@
 package com.example.USTAT.controller;
 
 
+import com.example.USTAT.Helper.ToGetCurrentUser;
 import com.example.USTAT.model.Response;
 import com.example.USTAT.model.User;
 import com.example.USTAT.service.UserService;
@@ -18,6 +19,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ToGetCurrentUser toGetCurrentUser;
 
     @GetMapping(path = "/getUser/{id}", //returns one User by id
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
@@ -56,4 +60,12 @@ public class UserController {
         this.userService.deleteAllUsers();
         return new Response(true,"Deleting all Users",null);
     }
+
+
+    @GetMapping(path = "/catchUser/", //returns one User by id
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public Response getUserById() {
+        return new Response(true,"Getting User by login", toGetCurrentUser.getCurrentUser());
+    }
+
 }

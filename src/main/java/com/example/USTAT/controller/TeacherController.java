@@ -1,5 +1,6 @@
 package com.example.USTAT.controller;
 
+import com.example.USTAT.Helper.ToGetCurrentUser;
 import com.example.USTAT.model.Response;
 import com.example.USTAT.model.Teacher;
 import com.example.USTAT.repository.TeacherRepository;
@@ -22,6 +23,9 @@ public class TeacherController {
     @Autowired
     private TeacherRepository teacherRepository;
 
+    @Autowired
+    private ToGetCurrentUser toGetCurrentUser;
+
     @GetMapping(path = "/getTeacher/{id}", //returns one teacher by id
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public Response getTeacherById(@PathVariable Long id) {
@@ -43,6 +47,7 @@ public class TeacherController {
     @PostMapping(path = "/saveTeacher", //saves one teacher in DataBase
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public Response saveTeacher(@RequestBody Teacher teacher) {
+        teacher.setUser(toGetCurrentUser.getCurrentUser());
         return new Response(true,"Saving teacher",this.teacherService.addTeacher(teacher));
     }
 
