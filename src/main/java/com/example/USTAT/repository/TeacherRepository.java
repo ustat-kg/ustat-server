@@ -26,5 +26,7 @@ public interface TeacherRepository
 //    @Query("select t from Teacher t where t.age = :age")
 //    List<Teacher> getAllByAge(Integer age);
 
+    @Query(value = "select t from teacher_subjetc t where :subject = ")
+
     List<Teacher> getAllByAge(Integer age);
 }

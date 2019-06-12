@@ -10,6 +10,8 @@ import org.springframework.http.MediaType;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.bind.annotation.*;
 
+
+@CrossOrigin
 @RestController
 @RequestMapping(UserController.URL_USER)
 public class UserController {

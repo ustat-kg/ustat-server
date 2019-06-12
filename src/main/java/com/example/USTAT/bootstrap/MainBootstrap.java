@@ -155,7 +155,6 @@ public class MainBootstrap implements CommandLineRunner {
         subjects.add(new Subject("Word"));
 
 
-
         for (int i = 0; i < subjects.size(); i++) {
             subjectRepository.save(subjects.get(i));
         }
@@ -178,12 +177,12 @@ public class MainBootstrap implements CommandLineRunner {
         }
 
 
-        Teacher teacher1 = new Teacher.Builder(user3,"My name is Mike",35,Gender.Male,
-                "Know JAVA","+1234567",bishkek).avatar("").build();
-        Request request = new Request(teacher1,student1,subjectArrayList,
+        Teacher teacher1 = new Teacher.Builder(user3, "My name is Mike", 35, Gender.Male,
+                "Know JAVA", "+1234567", bishkek).avatar("").build();
+        Request request = new Request(teacher1, student1, subjectArrayList,
                 "Hi I want to study with you");
         teacherRepository.save(teacher1);
-       // teacher1.setRequests(Arrays.asList(request));
+        // teacher1.setRequests(Arrays.asList(request));
         //teacherRepository.save(teacher1);
         teacher1.setSubjects(subjectArrayList);
         teacherRepository.save(teacher1);
