@@ -63,6 +63,9 @@ public class Teacher {
             inverseJoinColumns = @JoinColumn(name = "request_id"))
     private List<Request> requests;
 
+    public void setUser(Object currentUser) {
+    }
+
     public static class Builder{
         private Long id;
         private User user;

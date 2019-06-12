@@ -1,10 +1,7 @@
 package com.example.USTAT.Helper;
 
-import com.example.USTAT.model.User;
 import com.example.USTAT.repository.UserRepository;
 import com.example.USTAT.service.UserService;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -21,13 +18,24 @@ public class ToGetCurrentUser {
         this.userRepository = userRepository;
     }
 
-    public User getCurrentUser() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication instanceof AnonymousAuthenticationToken) {
-            return null;
-        }
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        return userService.findUserByLogin(userDetails.getUsername());
-    }
+//    public User getCurrentUser() {
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        if (authentication instanceof AnonymousAuthenticationToken) {
+//            return null;
+//        }
+//        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+//        return userService.findUserByLogin(userDetails.getUsername());
+//    }
 
+    public String getCurrentUser(){
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if(principal instanceof UserDetails){
+            String login = ((UserDetails)principal).getUsername();
+            return login;
+        }else {
+            String login = principal.toString();
+            return login;
+        }
+    }
 }

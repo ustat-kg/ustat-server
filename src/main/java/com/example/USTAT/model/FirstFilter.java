@@ -3,14 +3,29 @@ package com.example.USTAT.model;
 import com.example.USTAT.enums.Cost;
 import com.example.USTAT.enums.Gender;
 import com.example.USTAT.enums.Level;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 public class FirstFilter {
+    @JsonIgnore
     private Long id;
+
+    @JsonIgnore
     private Subject subject;
+
+    @JsonIgnore
     private Level levelOfTeacher;
+
+    @JsonIgnore
     private Integer age;
+
+    @JsonIgnore
     private Gender gender;
+
+    @JsonIgnore
     private Cost cost;
+
+    @JsonIgnore
     private Location location;
 
 

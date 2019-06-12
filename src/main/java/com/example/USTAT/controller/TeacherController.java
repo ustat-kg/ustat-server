@@ -49,7 +49,8 @@ public class TeacherController {
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public Response saveTeacher(@RequestBody Teacher teacher , Authentication authentication) {
         toGetCurrentUser.getCurrentUser();
-        //teacher.setUser(toGetCurrentUser.getCurrentUser());
+        teacher.setUser(toGetCurrentUser.getCurrentUser());
+        authentication.getClass();
         return new Response(true,"Saving teacher",this.teacherService.addTeacher(teacher));
     }
 
