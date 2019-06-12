@@ -37,10 +37,10 @@ public class TeacherController {
         return new Response(true,"Getting all teachers" ,this.teacherService.getAllTeachers());
     }
 
-    @GetMapping(path = "/getAllTeacherByAge/{age}")
-    public Response getAllByAge(@PathVariable("age") Integer age){
-        return new Response(true,"Getting all teachers by age", teacherRepository.getAllByAge(age));
-    }
+//    @GetMapping(path = "/getAllTeacherByAge/{age}")
+//    public Response getAllByAge(@PathVariable("age") Integer age){
+//        return new Response(true,"Getting all teachers by age", teacherRepository.getAllByAge(age));
+//    }
 
     @PostMapping(path = "/saveTeacher") //saves one teacher in DataBase
     public Response saveTeacher(@RequestBody Teacher teacher , Authentication authentication) {
@@ -64,5 +64,10 @@ public class TeacherController {
     public Response deleteAllTeachers() {
         this.teacherService.deleteAllTeachers();
         return new Response(true,"Deleting all teachers",null);
+    }
+
+    @GetMapping(path = "/getAllBySubject/{subject}")
+    public Response getAllBySubject(@PathVariable Long subject){
+        return new Response(true,"Getting teachers by subject",teacherRepository.getAllBySubject(subject));
     }
 }

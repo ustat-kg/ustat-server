@@ -178,15 +178,37 @@ public class MainBootstrap implements CommandLineRunner {
         }
 
 
+        ArrayList<Subject> subjectArrayList2 = new ArrayList<>();
+        for (int i = 0; i < subjects.size(); i++) {
+            if (subjects.get(i).getName().equals("Java")
+                    || subjects.get(i).getName().equals("Python")) {
+                subjectArrayList2.add(subjects.get(i));
+            }
+        }
+
+
+
+
         Teacher teacher1 = new Teacher.Builder(user3,"My name is Mike",35,Gender.Male,
                 "Know JAVA","+1234567",bishkek).avatar("").build();
-        Request request = new Request(teacher1,student1,subjectArrayList,
+        Request request1 = new Request(teacher1,student1,subjectArrayList,
                 "Hi I want to study with you");
-        teacherRepository.save(teacher1);
+       teacherRepository.save(teacher1);
        // teacher1.setRequests(Arrays.asList(request));
         //teacherRepository.save(teacher1);
         teacher1.setSubjects(subjectArrayList);
         teacherRepository.save(teacher1);
+
+
+        Teacher teacher2 = new Teacher.Builder(user2,"My name is Sam",24,Gender.Female,
+                "Know CSS","+1234567",bishkek).avatar("").build();
+        Request request2 = new Request(teacher2,student2,subjectArrayList,
+                "Hi I want to study with you");
+        teacherRepository.save(teacher2);
+        // teacher1.setRequests(Arrays.asList(request));
+        //teacherRepository.save(teacher1);
+        teacher2.setSubjects(subjectArrayList2);
+        teacherRepository.save(teacher2);
 
     }
 }

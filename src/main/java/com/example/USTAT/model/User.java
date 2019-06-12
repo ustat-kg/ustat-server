@@ -1,5 +1,6 @@
 package com.example.USTAT.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -40,9 +41,11 @@ public class User {
     @Column(name = "login")
     private String login;
 
+    @JsonIgnore
     @Column(name = "active")
     private int active;
 
+    @JsonIgnore
     @ManyToMany()
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),

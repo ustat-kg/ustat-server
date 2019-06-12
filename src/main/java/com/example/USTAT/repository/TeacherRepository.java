@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+import java.util.Set;
 
 
 @Repository
@@ -20,11 +20,11 @@ public interface TeacherRepository
     @Query("select u from User u where login = :login")
     User getUserByLogin (@Param("login") String login);
 
-    @Query("select t from Teacher t where t.subjects = :subject")
-    List<Teacher> getAllBySubject(String subject);
+    @Query(value = "select * from teacher_subject ts join ustat_teacher ut on ts.subject_id = :subject" , nativeQuery = true)
+    Set<Teacher> getAllBySubject(@Param("subject")Long subject);
 
 //    @Query("select t from Teacher t where t.age = :age")
 //    List<Teacher> getAllByAge(Integer age);
 
-    List<Teacher> getAllByAge(Integer age);
+//    Set<Teacher> getAllByAge(Integer age);
 }
