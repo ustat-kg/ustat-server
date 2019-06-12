@@ -48,14 +48,18 @@ public class MainBootstrap implements CommandLineRunner {
         Role admin = new Role("ADMIN");
         Role user = new Role("USER");
         Role guest = new Role("GUEST");
+        Role student = new Role("STUDENT");
+        Role teacher = new Role("TEACHER");
         roleRepository.save(admin);
         roleRepository.save(user);
         roleRepository.save(guest);
+        roleRepository.save(student);
+        roleRepository.save(teacher);
 
         User user1 = new User();
         user1.setLogin("aselia");
         user1.setPassword(cryptPasswordEncoder.encode("123456"));
-        user1.setName("Aselia");
+        user1.setFirstName("Aselia");
         user1.setLastName("Azimkanova");
         user1.setEmail("aselia.azimkanova@gmail.com");
         user1.setActive(1);
@@ -67,7 +71,7 @@ public class MainBootstrap implements CommandLineRunner {
         User user2 = new User();
         user2.setLogin("don");
         user2.setPassword(cryptPasswordEncoder.encode("123456"));
-        user2.setName("Alex");
+        user2.setFirstName("Alex");
         user2.setLastName("Don");
         user2.setEmail("alex.don@gmail.com");
         user2.setActive(1);
@@ -79,7 +83,7 @@ public class MainBootstrap implements CommandLineRunner {
         User user3 = new User();
         user3.setLogin("mike");
         user3.setPassword(cryptPasswordEncoder.encode("123456"));
-        user3.setName("Mike");
+        user3.setFirstName("Mike");
         user3.setLastName("Smith");
         user3.setEmail("mike.smith@gmail.com");
         user3.setActive(1);
@@ -90,7 +94,7 @@ public class MainBootstrap implements CommandLineRunner {
         User user4 = new User();
         user4.setLogin("sam");
         user4.setPassword(cryptPasswordEncoder.encode("123456"));
-        user4.setName("Sam");
+        user4.setFirstName("Sam");
         user4.setLastName("Danvers");
         user4.setEmail("sam.danvers@gmail.com");
         user4.setActive(1);
@@ -165,20 +169,24 @@ public class MainBootstrap implements CommandLineRunner {
                 (user2, 20, Gender.Female, "+456").build();
         studentRepository.save(student2);
 
-        HashSet<Subject> subjectHashSet = new HashSet<>();
+        ArrayList<Subject> subjectArrayList = new ArrayList<>();
         for (int i = 0; i < subjects.size(); i++) {
             if (subjects.get(i).getName().equals("Math")
                     || subjects.get(i).getName().equals("English Language")) {
-                subjectHashSet.add(subjects.get(i));
+                subjectArrayList.add(subjects.get(i));
             }
         }
 
 
-        Teacher teacher = new Teacher.Builder(user3,"My name is Mike",35,Gender.Male,
+        Teacher teacher1 = new Teacher.Builder(user3,"My name is Mike",35,Gender.Male,
                 "Know JAVA","+1234567",bishkek).avatar("").build();
-        teacherRepository.save(teacher);
-        teacher.setSubjects(subjectHashSet);
-        teacherRepository.save(teacher);
+        Request request = new Request(teacher1,student1,subjectArrayList,
+                "Hi I want to study with you");
+        teacherRepository.save(teacher1);
+       // teacher1.setRequests(Arrays.asList(request));
+        //teacherRepository.save(teacher1);
+        teacher1.setSubjects(subjectArrayList);
+        teacherRepository.save(teacher1);
 
     }
 }

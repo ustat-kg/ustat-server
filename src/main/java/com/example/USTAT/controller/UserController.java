@@ -7,6 +7,7 @@ import com.example.USTAT.model.User;
 import com.example.USTAT.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -27,6 +28,12 @@ public class UserController {
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public Response getUserById(@PathVariable Long id) {
         return new Response(true,"Getting User by id", this.userService.findUserById(id));
+    }
+
+    @ResponseBody
+    @ExceptionHandler(HttpMediaTypeNotAcceptableException.class)
+    public String handleHttpMediaTypeNotAcceptableException() {
+        return "acceptable MIME type:" + MediaType.APPLICATION_JSON_VALUE;
     }
 
     @GetMapping(path = "/getAllUsers", //returns all Users

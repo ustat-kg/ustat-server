@@ -42,5 +42,5 @@ public class LocationController {
     public Response deleteLocationById(@PathVariable Long id){
         this.locationService.deleteLocationById(id);
         return new Response(true,"Deleting location by id",null);
-    }
+        }
 }

@@ -35,7 +35,7 @@ public class User {
 
     @Column(name = "name")
     @NotEmpty(message = "*Please provide your name")
-    private String name;
+    private String firstName;
 
     @Column(name = "last_name")
     @NotEmpty(message = "*Please provide your last name")
@@ -56,10 +56,10 @@ public class User {
 
 
     public User(@NotEmpty() @Email(message = "*Please provide a valid Email") String email,
-                @Length(min = 5, message = "*Your password must have at least 5 characters") @NotEmpty(message = "*Please provide your password") String password, @NotEmpty(message = "*Please provide your name") String name, @NotEmpty(message = "*Please provide your last name") String lastName, @NotEmpty(message = "*Please provide an login") String login, int active, Set<Role> roles) {
+                @Length(min = 5, message = "*Your password must have at least 5 characters") @NotEmpty(message = "*Please provide your password") String password, @NotEmpty(message = "*Please provide your name") String firstName, @NotEmpty(message = "*Please provide your last name") String lastName, @NotEmpty(message = "*Please provide an login") String login, int active, Set<Role> roles) {
         this.email = email;
         this.password = password;
-        this.name = name;
+        this.firstName = firstName;
         this.lastName = lastName;
         this.login = login;
         this.active = active;
@@ -101,12 +101,12 @@ public class User {
         this.password = password;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {

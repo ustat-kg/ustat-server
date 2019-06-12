@@ -5,6 +5,7 @@ import com.example.USTAT.model.Response;
 import com.example.USTAT.model.Teacher;
 import com.example.USTAT.repository.TeacherRepository;
 import com.example.USTAT.service.TeacherService;
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -46,8 +47,9 @@ public class TeacherController {
 
     @PostMapping(path = "/saveTeacher", //saves one teacher in DataBase
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public Response saveTeacher(@RequestBody Teacher teacher) {
-        teacher.setUser(toGetCurrentUser.getCurrentUser());
+    public Response saveTeacher(@RequestBody Teacher teacher , Authentication authentication) {
+        toGetCurrentUser.getCurrentUser();
+        //teacher.setUser(toGetCurrentUser.getCurrentUser());
         return new Response(true,"Saving teacher",this.teacherService.addTeacher(teacher));
     }
 

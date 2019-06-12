@@ -4,7 +4,7 @@ import com.example.USTAT.enums.Cost;
 import com.example.USTAT.enums.Gender;
 import com.example.USTAT.enums.Level;
 
-public class FirstRequest {
+public class FirstFilter {
     private Long id;
     private Subject subject;
     private Level levelOfTeacher;
@@ -14,11 +14,11 @@ public class FirstRequest {
     private Location location;
 
 
-    public FirstRequest() {
+    public FirstFilter() {
     }
 
-    public FirstRequest(Long id, Level levelOfTeacher, Integer age,
-                        Gender gender, Cost cost, Location location) {
+    public FirstFilter(Long id, Level levelOfTeacher, Integer age,
+                       Gender gender, Cost cost, Location location) {
         this.id = id;
         this.levelOfTeacher = levelOfTeacher;
         this.age = age;

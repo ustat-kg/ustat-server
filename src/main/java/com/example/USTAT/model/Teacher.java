@@ -5,7 +5,9 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -18,7 +20,6 @@ public class Teacher {
     private Long id;
 
     @OneToOne
-    @NotNull
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -46,24 +47,21 @@ public class Teacher {
 
     private String importantLinks;
 
-    @ManyToMany()
+    @ManyToMany(cascade=CascadeType.ALL)
     @JoinTable(name = "teacher_subject",
             joinColumns = @JoinColumn(name = "teacher_id"),
             inverseJoinColumns = @JoinColumn(name = "subject_id"))
-    private Set<Subject> subjects = new HashSet<>();
-
-
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @JoinTable(name = "user_role",
-//            joinColumns = @JoinColumn(name = "user_id"),
-//            inverseJoinColumns = @JoinColumn(name = "role_id"))
-//    private Set<Role> roles;
+    private List<Subject> subjects;
 
 
     @OneToOne
     private Location location;
 
-    //private List<Request> requests;
+    @ManyToMany(cascade=CascadeType.ALL)
+    @JoinTable(name = "teacher_request",
+            joinColumns = @JoinColumn(name = "teacher_id"),
+            inverseJoinColumns = @JoinColumn(name = "request_id"))
+    private List<Request> requests;
 
     public static class Builder{
         private Long id;
@@ -76,8 +74,9 @@ public class Teacher {
         private Float rating;
         private String phoneNumber;
         private String importantLinks;
-        private Set<Subject> subjects= new HashSet<>();
+        private List<Subject> subjects= new ArrayList<>();
         private Location location;
+        private List<Request> requests;
 
 
         public Builder(User user, String shortInfoAboutYou, Integer age, Gender gender,
@@ -92,8 +91,13 @@ public class Teacher {
            // this.subjects = subjects;
         }
 
-        public Builder subjects(Set<Subject> subjects){
+        public Builder subjects(List<Subject> subjects){
             this.subjects = subjects;
+            return this;
+        }
+
+        public Builder requests(List<Request> requests){
+            this.requests = requests;
             return this;
         }
 
@@ -101,6 +105,8 @@ public class Teacher {
             this.avatar = avatar;
             return this;
         }
+
+
 
 
 
@@ -113,6 +119,7 @@ public class Teacher {
             teacher.formalBackground = formalBackground;
             teacher.phoneNumber = phoneNumber;
             teacher.location = location;
+            teacher.requests = requests;
             return teacher;
         }
 
@@ -226,11 +233,11 @@ public class Teacher {
         this.importantLinks = importantLinks;
     }
 
-    public Set<Subject> getSubjects() {
+    public List<Subject> getSubjects() {
         return subjects;
     }
 
-    public void setSubjects(Set<Subject> subjects) {
+    public void setSubjects(List<Subject> subjects) {
         this.subjects = subjects;
     }
 
@@ -240,5 +247,14 @@ public class Teacher {
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+
+
+    public List<Request> getRequests() {
+        return requests;
+    }
+
+    public void setRequests(List<Request> requests) {
+        this.requests = requests;
     }
 }

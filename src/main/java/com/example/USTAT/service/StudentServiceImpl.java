@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -35,8 +36,12 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student saveStudent(Student student) {
+//        List<Role> roles = new ArrayList<>();
+//        roles.add(roleRepository.findAll().stream().filter(x -> x.getRole().equals("USER")).findFirst().get());
+//        roles.add(roleRepository.findAll().stream().filter(x -> x.getRole().equals("STUDENT")).findFirst().get());
+//        student.getUser().setRoles(new HashSet<Role>(roles));
         Role role = roleRepository.findAll().stream().filter(x -> x.getRole().equals("USER")).findFirst().get();
-        student.getUser().setRoles(new HashSet<>(Arrays.asList(role)));
+        student.getUser().setRoles(new HashSet<Role>(Arrays.asList(role)));
         return this.studentRepository.save(student);
     }
 
