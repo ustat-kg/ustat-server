@@ -17,39 +17,33 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @GetMapping(path = "/getStudent/{id}", //returns one student by id
-            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @GetMapping(path = "/getStudent/{id}") //returns one student by
     public Response getStudentById(@PathVariable Long id) {
         return new Response(true,"Getting student by id", this.studentService.getStudentById(id));
     }
 
-    @GetMapping(path = "/getAllStudents", //returns all students
-            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @GetMapping(path = "/getAllStudents") //returns all students
     public Response getAllStudent() {
         return new Response(true,"Getting all students" ,this.studentService.getAllStudents());
     }
 
-    @PostMapping(path = "/saveStudent", //saves one student in DataBase
-            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @PostMapping(path = "/saveStudent" )//saves one student in DataBase
     public Response saveStudent(@RequestBody Student student) {
         return new Response(true,"Saving student",this.studentService.saveStudent(student));
     }
 
-    @PostMapping(path = "/updateStudent", // updates data of one student
-            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @PostMapping(path = "/updateStudent") // updates data of one student
     public Response updateStudent(@RequestBody Student student) {
         return new Response(true,"Updating Student",this.studentService.updateStudent(student));
     }
 
-    @DeleteMapping(path = "/deleteStudent/{id}", //deletes one student by id
-            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @DeleteMapping(path = "/deleteStudent/{id}") //deletes one student by id
     public Response deleteStudentById(@PathVariable Long id) {
         this.studentService.deleteStudentById(id);
         return new Response(true,"Deleting student by id",null);
     }
 
-    @DeleteMapping(path = "/admin/deleteAllStudents", //deletes all students
-            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @DeleteMapping(path = "/admin/deleteAllStudents") //deletes all students
     public Response deleteAllStudents() {
         this.studentService.deleteAllStudents();
         return new Response(true,"Deleting all students",null);

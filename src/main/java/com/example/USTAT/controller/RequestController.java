@@ -20,35 +20,30 @@ public class RequestController {
     private RequestService requestService;
 
 
-    @GetMapping(path = "/getRequest/{id}",
-            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @GetMapping(path = "/getRequest/{id}")
     public Response getRequestById(@PathVariable Long id){
         return new Response(true,"Getting request by id",requestService.getRequestById(id));
     }
 
-    @GetMapping(path = "/getAllRequests/{id}",
-            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @GetMapping(path = "/getAllRequests/{id}")
     public Response getAllRequests(@PathVariable Long id){
         return new Response(true,"Getting all requests by teacher id" , requestService.getAllRequestsById(id));
     }
 
 
 
-    @PostMapping(path = "/saveRequest",
-            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @PostMapping(path = "/saveRequest")
     public Response addRequest(@RequestBody Request request){
         return new Response(true,"Saving request",requestService.saveRequest(request));
     }
 
-    @DeleteMapping(path = "/deleteRequest/{id}",
-            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @DeleteMapping(path = "/deleteRequest/{id}")
     private Response deleteRequestById(@PathVariable Long id){
         requestService.deleteRequestById(id);
         return new Response(true,"Deleting request by id",null);
     }
 
-    @DeleteMapping(path = "/admin/deleteAllRequests" ,
-            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @DeleteMapping(path = "/admin/deleteAllRequests")
     public Response deleteAllRequests(){
         requestService.deleteAllRequests();
         return new Response(true,"Deleting all requests",null);

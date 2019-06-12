@@ -9,6 +9,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Data
@@ -24,39 +25,32 @@ public class User {
     private Long id;
 
     @Column (name = "email")
-    @NotEmpty()
-    @Email(message = "*Please provide a valid Email")
+    @Email
     private String email;
 
     @Column(name = "password")
-    @Length(min = 5, message = "*Your password must have at least 5 characters")
-    @NotEmpty(message = "*Please provide your password")
-        private String password;
+    private String password;
 
     @Column(name = "name")
-    @NotEmpty(message = "*Please provide your name")
     private String firstName;
 
     @Column(name = "last_name")
-    @NotEmpty(message = "*Please provide your last name")
     private String lastName;
 
     @Column(name = "login")
-    @NotEmpty(message = "*Please provide an login")
     private String login;
 
     @Column(name = "active")
     private int active;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany()
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-
-    public User(@NotEmpty() @Email(message = "*Please provide a valid Email") String email,
-                @Length(min = 5, message = "*Your password must have at least 5 characters") @NotEmpty(message = "*Please provide your password") String password, @NotEmpty(message = "*Please provide your name") String firstName, @NotEmpty(message = "*Please provide your last name") String lastName, @NotEmpty(message = "*Please provide an login") String login, int active, Set<Role> roles) {
+    public User(@Email String email, String password, String firstName, String lastName,
+                String login, int active, Set<Role> roles) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
@@ -66,18 +60,18 @@ public class User {
         this.roles = roles;
     }
 
-    public User() {
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
+    public User(@Email String email, String password, String firstName, String lastName, String login) {
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.login = login;
     }
 
-    public Long getId() { 
+    public User() {
+    }
+
+    public Long getId() {
         return id;
     }
 
@@ -115,6 +109,14 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public int getActive() {
