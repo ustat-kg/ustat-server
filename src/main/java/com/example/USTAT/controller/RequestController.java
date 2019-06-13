@@ -3,6 +3,7 @@ package com.example.USTAT.controller;
 import com.example.USTAT.model.Request;
 import com.example.USTAT.model.Response;
 import com.example.USTAT.model.Subject;
+import com.example.USTAT.repository.RequestRepository;
 import com.example.USTAT.service.RequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -19,15 +20,18 @@ public class RequestController {
     @Autowired
     private RequestService requestService;
 
+    @Autowired
+    private RequestRepository requestRepository;
+
 
     @GetMapping(path = "/getRequest/{id}")
     public Response getRequestById(@PathVariable Long id){
         return new Response(true,"Getting request by id",requestService.getRequestById(id));
     }
 
-    @GetMapping(path = "/getAllRequests/{id}")
-    public Response getAllRequests(@PathVariable Long id){
-        return new Response(true,"Getting all requests by teacher id" , requestService.getAllRequestsById(id));
+    @GetMapping(path = "/getAllRequests/{teacher_id}")
+    public Response getAllRequests(@PathVariable Long teacher_id) {
+        return new Response(true, "Getting all requests by teacher id", requestRepository.getAllRequests(teacher_id));
     }
 
 
@@ -43,7 +47,8 @@ public class RequestController {
         return new Response(true,"Deleting request by id",null);
     }
 
-    @DeleteMapping(path = "/admin/deleteAllRequests")
+    @DeleteMapping(path = "/admin/deleteAllRequests" ,
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public Response deleteAllRequests(){
         requestService.deleteAllRequests();
         return new Response(true,"Deleting all requests",null);

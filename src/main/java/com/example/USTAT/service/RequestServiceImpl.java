@@ -13,15 +13,17 @@ public class RequestServiceImpl implements RequestService {
     @Autowired
     private RequestRepository requestRepository;
 
+
+
     @Override
     public Request getRequestById(Long id) {
         return this.requestRepository.findById(id).get();
     }
 
-    @Override
-    public List<Request> getAllRequestsById(Long id) {
-        return this.requestRepository.findAllById(id);
-    }
+//    @Override
+//    public List<Request> getAllRequestsById(Long id) {
+//        return this.requestRepository.findAllById(id);
+//    }
 
     @Override
     public Request saveRequest(Request request) {
