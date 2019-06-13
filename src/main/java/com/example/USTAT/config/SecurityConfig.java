@@ -43,15 +43,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.
-                authorizeRequests()
+        http.httpBasic().and()
+                .authorizeRequests().anyRequest().authenticated()
                 .antMatchers("/**").permitAll()
-                // .antMatchers("/ustat/login").permitAll()
-                // .antMatchers("/ustat/registration").permitAll()
-                //  .antMatchers("/ustat/admin/**").hasAuthority("USER")
-                // .antMatchers("/ustat/getAllStudents").hasAuthority("USER")
-                //.antMatchers("/ustat/getAllSubject").permitAll()
-                //.antMatchers("/ustat/getStudent/{id}").permitAll()
+//                 .antMatchers("/ustat/login").permitAll()
+//                 .antMatchers("/ustat/registration").permitAll()
+//                  .antMatchers("/ustat/admin/deleteLocation/{id}").hasAuthority("ADMIN")
+//                .antMatchers("/ustat/deleteStudent/{id}").hasAuthority("ADMIN")
+//                 .antMatchers("/ustat/getAllStudents").hasAuthority("ADMIN")
+//                .antMatchers("/ustat/getAllSubject").permitAll()
+//                .antMatchers("/ustat/getStudent/{id}").permitAll()
+//                .antMatchers("/ustat/getAllLocations").hasAuthority("USER")
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .and().csrf().disable();
