@@ -1,6 +1,8 @@
 package com.example.USTAT.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -13,6 +15,7 @@ public class Request {
     @Column(name = "request_id")
     private Long id;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
@@ -23,7 +26,7 @@ public class Request {
 
     @ManyToMany(cascade=CascadeType.ALL)
     @JoinTable(name = "request_subject",
-            joinColumns = @JoinColumn(name = "request_id"),
+            joinColumns = @JoinColumn(name = "requests_id"),
             inverseJoinColumns = @JoinColumn(name = "subject_id"))
     private List<Subject> subject;
 
@@ -39,6 +42,7 @@ public class Request {
     }
 
     public Request() {
+
     }
 
     public Long getId() {

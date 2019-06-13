@@ -191,10 +191,10 @@ public class MainBootstrap implements CommandLineRunner {
 
         Teacher teacher1 = new Teacher.Builder(user3,"My name is Mike",35,Gender.Male,
                 "Know JAVA","+1234567",bishkek).avatar("").build();
-        Request request1 = new Request(teacher1,student1,subjectArrayList,
+        Request request1 = new Request(teacher1,student1,new ArrayList<>(subjectArrayList),
                 "Hi I want to study with you");
        teacherRepository.save(teacher1);
-       // teacher1.setRequests(Arrays.asList(request));
+        teacher1.setRequests(Arrays.asList(request1));
         //teacherRepository.save(teacher1);
         teacher1.setSubjects(subjectArrayList);
         teacherRepository.save(teacher1);
@@ -202,11 +202,11 @@ public class MainBootstrap implements CommandLineRunner {
 
         Teacher teacher2 = new Teacher.Builder(user2,"My name is Sam",24,Gender.Female,
                 "Know CSS","+1234567",bishkek).avatar("").build();
-        Request request2 = new Request(teacher2,student2,subjectArrayList,
+        Request request2 = new Request(teacher2,student2,new ArrayList<>(subjectArrayList),
                 "Hi I want to study with you");
         teacherRepository.save(teacher2);
-        // teacher1.setRequests(Arrays.asList(request));
-        //teacherRepository.save(teacher1);
+         teacher1.setRequests(Arrays.asList(request2));
+        teacherRepository.save(teacher1);
         teacher2.setSubjects(subjectArrayList2);
         teacherRepository.save(teacher2);
 

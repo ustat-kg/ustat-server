@@ -1,6 +1,7 @@
 package com.example.USTAT.model;
 
 import com.example.USTAT.enums.Gender;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -47,6 +48,7 @@ public class Teacher {
 
     private String importantLinks;
 
+    @JsonIgnore
     @ManyToMany(cascade=CascadeType.ALL)
     @JoinTable(name = "teacher_subject",
             joinColumns = @JoinColumn(name = "teacher_id"),
@@ -57,6 +59,7 @@ public class Teacher {
     @OneToOne
     private Location location;
 
+    @JsonIgnore
     @ManyToMany(cascade=CascadeType.ALL)
     @JoinTable(name = "teacher_request",
             joinColumns = @JoinColumn(name = "teacher_id"),
